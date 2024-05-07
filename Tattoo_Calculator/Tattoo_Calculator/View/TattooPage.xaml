@@ -51,17 +51,7 @@
                     <Entry VerticalOptions="Center" Text="{Binding TimePrice}"></Entry>
                 </HorizontalStackLayout>
             </Frame>
-            
-            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
-                <HorizontalStackLayout>
-                    <Label Text="Δημ. Σχεδίου" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Picker 
-                        ItemsSource="{Binding DesignChoice}"
-                        ItemDisplayBinding="{Binding .}"
-                        VerticalOptions="Center"/>
-                </HorizontalStackLayout>
-            </Frame>
-
+          
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
                     <Label Text="Τιμή σχεδίου" VerticalOptions="Center" WidthRequest="110"></Label>
@@ -92,7 +82,12 @@
                     Command="{Binding ClearCommand}"/>
 
             </Grid>
-        
+
+            <HorizontalStackLayout>
+                <Label Text="Σύνολο: " VerticalOptions="Center"></Label>
+                <Label Text="{Binding }" VerticalOptions="Center"></Label>
+            </HorizontalStackLayout>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

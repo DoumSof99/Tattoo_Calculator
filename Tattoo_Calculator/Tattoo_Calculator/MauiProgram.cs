@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Tattoo_Calculator.Controls;
 
 namespace Tattoo_Calculator {
     public static class MauiProgram {
@@ -14,6 +15,8 @@ namespace Tattoo_Calculator {
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddSingleton<TattooPage>();
 
             return builder.Build();
         }

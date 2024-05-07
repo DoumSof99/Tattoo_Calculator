@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tattoo_Calculator.Controls.TattooPage"
+             Title="Irini Tattoo">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+      
+            <Image
+                Source="logo.png"
+                HeightRequest="135"
+                Aspect="AspectFit"/>
+        
+            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
+                <HorizontalStackLayout >
+                    <Label Text="Βελόνες" VerticalOptions="Center" WidthRequest="110"></Label>
+                    <Entry VerticalOptions="Center" Text="{Binding Niddle}"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
+                <HorizontalStackLayout>
+                    <Label Text="Ύψος" VerticalOptions="Center" WidthRequest="110"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
+                <HorizontalStackLayout>
+                    <Label Text="Πλάτος" VerticalOptions="Center" WidthRequest="110"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
+                <HorizontalStackLayout>
+                    <Label Text="Τιμή Χρώματος" VerticalOptions="Center" WidthRequest="110"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
+                <HorizontalStackLayout>
+                    <Label Text="Κόστος ώρας" VerticalOptions="Center" WidthRequest="110"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+            
+            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
+                <HorizontalStackLayout>
+                    <Label Text="Δημ. Σχεδίου" VerticalOptions="Center" WidthRequest="110"></Label>
+                    <!--<Entry VerticalOptions="Center"></Entry>-->
+                    <!--<Picker x:Name="DesignChoice" VerticalOptions="Center">
+                        <Picker.ItemsSource>
+                            <x:String>No</x:String>
+                            <x:String>Yes</x:String>
+                        </Picker.ItemsSource>
+                    </Picker>-->
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
+                <HorizontalStackLayout>
+                    <Label Text="Τιμή σχεδίου" VerticalOptions="Center" WidthRequest="110"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
+                <HorizontalStackLayout>
+                    <Label Text="Λεπτομέρια" VerticalOptions="Center" WidthRequest="110"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Grid ColumnDefinitions="*,*" Margin="10">
+                <Button
+                    Text="Calculate"
+                    Grid.Column="0"
+                    Margin="5"
+                    HorizontalOptions="FillAndExpand"
+                    Command="{Binding CalculateCommand}"/>
+                
+                <Button
+                    Text="Clear"
+                    Grid.Column="1"
+                    Margin="5"
+                    HorizontalOptions="FillAndExpand"
+                    Command="{Binding ClearCommand}"/>
+
+            </Grid>
+        
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

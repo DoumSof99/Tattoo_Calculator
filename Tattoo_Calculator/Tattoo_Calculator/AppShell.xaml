@@ -4,12 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Tattoo_Calculator"
-    Shell.FlyoutBehavior="Disabled"
-    Title="Tattoo_Calculator">
+    xmlns:view="clr-namespace:Tattoo_Calculator.Controls"    
+    Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate view:TattooPage}"
         Route="MainPage" />
 
 </Shell>

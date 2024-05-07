@@ -6,7 +6,7 @@ namespace Tattoo_Calculator.Models {
     public class TattooViewModel : INotifyPropertyChanged { 
         private TattooModel tattoo = new TattooModel();
 
-        public int Niddle { 
+        public int? Niddle { 
             get => tattoo.Niddle;
             set {
                 tattoo.Niddle = value;
@@ -14,14 +14,14 @@ namespace Tattoo_Calculator.Models {
             } 
         }
 
-        public int Height {
+        public int? Height {
             get => tattoo.Height;
             set {
                 tattoo.Height = value;
                 OnPropertyChanged(nameof(Height));
             }
         }
-        public int Width {
+        public int? Width {
             get => tattoo.Width;
             set {
                 tattoo.Width = value;
@@ -43,7 +43,7 @@ namespace Tattoo_Calculator.Models {
                 OnPropertyChanged(nameof(TimePrice));
             }
         }
-        public OptionEnum DesignChoice {
+        public List<string>? DesignChoice {
             get => tattoo.DesignChoice;
             set {
                 tattoo.DesignChoice = value;
@@ -73,19 +73,22 @@ namespace Tattoo_Calculator.Models {
     }
 
     public class TattooModel {
-        public int Niddle { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
+        public int? Niddle { get; set; }
+        public int? Height { get; set; }
+        public int? Width { get; set; }
         public int? ColorPrice { get; set; }
         public int? TimePrice { get; set; }
-        public OptionEnum DesignChoice { get; set; }
+        public List<string>? DesignChoice { get; set; }
         public int? DesignPrice { get; set; }
         public int? DetailPrice { get; set; }
 
+        public TattooModel()
+        {
+            DesignChoice = new List<string>() {
+                "Yes",
+                "No"
+            };
+        }
     }
 
-    public enum OptionEnum {
-        No = 0,
-        Yes = 1
-    }
 }

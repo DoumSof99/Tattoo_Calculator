@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tattoo_Calculator.Controls.TattooPage"
+             xmlns:local="clr-namespace:Tattoo_Calculator.Models"
              Title="Irini Tattoo">
+
+    <ContentPage.BindingContext>
+        <local:TattooViewModel />
+    </ContentPage.BindingContext>
+    
     <ScrollView>
         <VerticalStackLayout Spacing="10">
       
@@ -21,55 +27,52 @@
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
                     <Label Text="Ύψος" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center"></Entry>
+                    <Entry VerticalOptions="Center" Text="{Binding Height}"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
                     <Label Text="Πλάτος" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center"></Entry>
+                    <Entry VerticalOptions="Center" Text="{Binding Width}"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
                     <Label Text="Τιμή Χρώματος" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center"></Entry>
+                    <Entry VerticalOptions="Center" Text="{Binding ColorPrice}"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
                     <Label Text="Κόστος ώρας" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center"></Entry>
+                    <Entry VerticalOptions="Center" Text="{Binding TimePrice}"></Entry>
                 </HorizontalStackLayout>
             </Frame>
             
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
                     <Label Text="Δημ. Σχεδίου" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <!--<Entry VerticalOptions="Center"></Entry>-->
-                    <!--<Picker x:Name="DesignChoice" VerticalOptions="Center">
-                        <Picker.ItemsSource>
-                            <x:String>No</x:String>
-                            <x:String>Yes</x:String>
-                        </Picker.ItemsSource>
-                    </Picker>-->
+                    <Picker 
+                        ItemsSource="{Binding DesignChoice}"
+                        ItemDisplayBinding="{Binding .}"
+                        VerticalOptions="Center"/>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
                     <Label Text="Τιμή σχεδίου" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center"></Entry>
+                    <Entry VerticalOptions="Center" Text="{Binding DesignPrice}"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
                     <Label Text="Λεπτομέρια" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center"></Entry>
+                    <Entry VerticalOptions="Center" Text="{Binding DetailPrice}"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 

@@ -7,6 +7,6 @@ public partial class TattooPage : ContentPage
 	public TattooPage()
 	{
 		InitializeComponent();
-		this.BindingContext = new TattooModel();
+		this.BindingContext = new TattooViewModel();
 	}
 }

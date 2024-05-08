@@ -2,14 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tattoo_Calculator.Controls.TattooPage"
-             xmlns:local="clr-namespace:Tattoo_Calculator.Models"
+             xmlns:model="clr-namespace:Tattoo_Calculator.Models"
+             xmlns:local="clr-namespace:Tattoo_Calculator.Controls"
              Title="Irini Tattoo">
 
     <ContentPage.BindingContext>
-        <local:TattooViewModel />
+        <model:TattooViewModel />
     </ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="Irini Tattoo" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="Windsong" FontSize="Large" />
+        </Grid>
+    </Shell.TitleView>
     
-    <ScrollView>
+    <ScrollView BackgroundColor="AliceBlue">
         <VerticalStackLayout Spacing="10">
       
             <Image
@@ -19,50 +26,50 @@
         
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout >
-                    <Label Text="Βελόνες" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center" Text="{Binding Niddle}"></Entry>
+                    <Label Text="Niddles" VerticalOptions="Center" WidthRequest="110" FontFamily="PlayfairDisplaySC"></Label>
+                    <Entry VerticalOptions="Center" Text="{Binding Niddle}" WidthRequest="190" FontFamily="PlayfairDisplaySC"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
-                    <Label Text="Ύψος" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center" Text="{Binding Height}"></Entry>
+                    <Label Text="Height" VerticalOptions="Center" WidthRequest="110" FontFamily="PlayfairDisplaySC"></Label>
+                    <Entry VerticalOptions="Center" Text="{Binding Height}" WidthRequest="190" FontFamily="PlayfairDisplaySC"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
-                    <Label Text="Πλάτος" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center" Text="{Binding Width}"></Entry>
+                    <Label Text="Width" VerticalOptions="Center" WidthRequest="110" FontFamily="PlayfairDisplaySC"></Label>
+                    <Entry VerticalOptions="Center" Text="{Binding Width}" WidthRequest="190" FontFamily="PlayfairDisplaySC"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
-                    <Label Text="Τιμή Χρώματος" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center" Text="{Binding ColorPrice}"></Entry>
+                    <Label Text="Color Price" VerticalOptions="Center" WidthRequest="110" FontFamily="PlayfairDisplaySC"></Label>
+                    <Entry VerticalOptions="Center" Text="{Binding ColorPrice}" WidthRequest="190" FontFamily="PlayfairDisplaySC"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
-                    <Label Text="Κόστος ώρας" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center" Text="{Binding TimePrice}"></Entry>
+                    <Label Text="Time Price" VerticalOptions="Center" WidthRequest="110" FontFamily="PlayfairDisplaySC"></Label>
+                    <Entry VerticalOptions="Center" Text="{Binding TimePrice}" WidthRequest="190" FontFamily="PlayfairDisplaySC"></Entry>
                 </HorizontalStackLayout>
             </Frame>
           
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
-                    <Label Text="Τιμή σχεδίου" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center" Text="{Binding DesignPrice}"></Entry>
+                    <Label Text="Τιμή σχεδίου" VerticalOptions="Center" WidthRequest="110" FontFamily="PlayfairDisplaySC"></Label>
+                    <Entry VerticalOptions="Center" Text="{Binding DesignPrice}" WidthRequest="190" FontFamily="PlayfairDisplaySC"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Padding="10,1,1,10" Margin="10, 10, 10, 0">
                 <HorizontalStackLayout>
-                    <Label Text="Λεπτομέρια" VerticalOptions="Center" WidthRequest="110"></Label>
-                    <Entry VerticalOptions="Center" Text="{Binding DetailPrice}"></Entry>
+                    <Label Text="Λεπτομέρια" VerticalOptions="Center" WidthRequest="110" FontFamily="PlayfairDisplaySC"></Label>
+                    <Entry VerticalOptions="Center" Text="{Binding DetailPrice}" WidthRequest="190" FontFamily="PlayfairDisplaySC"></Entry>
                 </HorizontalStackLayout>
             </Frame>
 
@@ -72,21 +79,72 @@
                     Grid.Column="0"
                     Margin="5"
                     HorizontalOptions="FillAndExpand"
-                    Command="{Binding CalculateCommand}"/>
+                    Command="{Binding CalculateCommand}"
+                    FontFamily="PlayfairDisplaySC"/>
                 
                 <Button
                     Text="Clear"
                     Grid.Column="1"
                     Margin="5"
                     HorizontalOptions="FillAndExpand"
-                    Command="{Binding ClearCommand}"/>
+                    Command="{Binding ClearCommand}"
+                    FontFamily="PlayfairDisplaySC"/>
 
             </Grid>
 
-            <HorizontalStackLayout>
-                <Label Text="Σύνολο: " VerticalOptions="Center"></Label>
-                <Label Text="{Binding }" VerticalOptions="Center"></Label>
-            </HorizontalStackLayout>
+            <StackLayout>
+                <HorizontalStackLayout Padding="10, 3, 10, 3">
+                    <Label Text="Σύνολο βελονας:" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                    <Label Text="{Binding NiddleResultPrice}" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10, 3, 10, 3">
+                    <Label Text="Σύνολο ύψους:" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                    <Label Text="{Binding TotalPrice}" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10, 3, 10, 3">
+                    <Label Text="Σύνολο πλάτους:" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                    <Label Text="{Binding TotalPrice}" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10, 3, 10, 3">
+                    <Label Text="Σύνολο χρώματος:" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                    <Label Text="{Binding TotalPrice}" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10, 3, 10, 3">
+                    <Label Text="Σύνολο ώρας:" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                    <Label Text="{Binding TotalPrice}" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10, 3, 10, 3">
+                    <Label Text="Σύνολο σχεδίου:" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                    <Label Text="{Binding TotalPrice}" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10, 3, 10, 3">
+                    <Label Text="Σύνολο λεπτομέριας:" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                    <Label Text="{Binding TotalPrice}" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                </HorizontalStackLayout>
+
+                <Frame Padding="10, 10, 10, 10" Margin="10,10,10,10" BackgroundColor="AliceBlue" HasShadow="True" HeightRequest="50" WidthRequest="350">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop 
+                                Color="AliceBlue"
+                                Offset="0.1"/>
+                            <GradientStop
+                                Color="BlueViolet"
+                                Offset="0.1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <HorizontalStackLayout >
+                        <Label Text="Σύνολο: " VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontSize="Medium" FontAttributes="Bold" FontFamily="PlayfairDisplaySC"></Label>
+                        <Label Text="{Binding TotalPrice}" VerticalOptions="Center" IsVisible="{Binding IsLabelVisible}" FontFamily="PlayfairDisplaySC"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+            </StackLayout>
 
         </VerticalStackLayout>
     </ScrollView>

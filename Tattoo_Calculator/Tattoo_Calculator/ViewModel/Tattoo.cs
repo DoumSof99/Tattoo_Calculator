@@ -21,7 +21,7 @@ namespace Tattoo_Calculator.Models {
 
         #region define props
         #region tattoo props
-        public int? Niddle { 
+        public string? Niddle { 
             get => tattoo.Niddle;
             set {
                 tattoo.Niddle = value;
@@ -29,14 +29,14 @@ namespace Tattoo_Calculator.Models {
             } 
         }
 
-        public int? Height {
+        public string? Height {
             get => tattoo.Height;
             set {
                 tattoo.Height = value;
                 OnPropertyChanged(nameof(Height));
             }
         }
-        public int? Width {
+        public string? Width {
             get => tattoo.Width;
             set {
                 tattoo.Width = value;
@@ -44,28 +44,28 @@ namespace Tattoo_Calculator.Models {
             }
         }
 
-        public int? ColorPrice {
+        public string? ColorPrice {
             get => tattoo.ColorPrice;
             set {
                 tattoo.ColorPrice = value;
                 OnPropertyChanged(nameof(ColorPrice));
             }
         }
-        public int? TimePrice {
+        public string? TimePrice {
             get => tattoo.TimePrice;
             set {
                 tattoo.TimePrice = value;
                 OnPropertyChanged(nameof(TimePrice));
             }
         }
-        public int? DesignPrice {
+        public string? DesignPrice {
             get => tattoo.DesignPrice;
             set {
                 tattoo.DesignPrice = value;
                 OnPropertyChanged(nameof(DesignPrice));
             }
         }
-        public int? DetailPrice {
+        public string? DetailPrice {
             get => tattoo.DetailPrice;
             set {
                 tattoo.DetailPrice = value;
@@ -75,7 +75,7 @@ namespace Tattoo_Calculator.Models {
         #endregion
 
         #region tattoo result props
-        public int? NiddleResultPrice {
+        public string? NiddleResultPrice {
             get => tattooResult.NiddleResultPrice;
             set {
                 tattooResult.NiddleResultPrice = value;
@@ -83,14 +83,14 @@ namespace Tattoo_Calculator.Models {
             }
         }
 
-        public int? HeightResultPrice {
+        public string? HeightResultPrice {
             get => tattooResult.HeightResultPrice;
             set {
                 tattooResult.HeightResultPrice = value;
                 OnPropertyChanged(nameof(HeightResultPrice));
             }
         }
-        public int? WidthResultPrice {
+        public string? WidthResultPrice {
             get => tattooResult.WidthResultPrice;
             set {
                 tattooResult.WidthResultPrice = value;
@@ -98,32 +98,46 @@ namespace Tattoo_Calculator.Models {
             }
         }
 
-        public int? ColorResultPrice {
+        public string? ColorResultPrice {
             get => tattooResult.ColorResultPrice;
             set {
                 tattooResult.ColorResultPrice = value;
                 OnPropertyChanged(nameof(ColorResultPrice));
             }
         }
-        public int? TimeResultPrice {
+        public string? TimeResultPrice {
             get => tattooResult.TimeResultPrice;
             set {
                 tattooResult.TimeResultPrice = value;
                 OnPropertyChanged(nameof(TimeResultPrice));
             }
         }
-        public int? DesignResultPrice {
+        public string? DesignResultPrice {
             get => tattooResult.DesignResultPrice;
             set {
                 tattooResult.DesignResultPrice = value;
                 OnPropertyChanged(nameof(DesignResultPrice));
             }
         }
-        public int? DetailResultPrice {
+        public string? DetailResultPrice {
             get => tattooResult.DetailResultPrice;
             set {
                 tattooResult.DetailResultPrice = value;
                 OnPropertyChanged(nameof(DetailResultPrice));
+            }
+        }
+        public string? TotalPrice {
+            get => tattooResult.TotalPrice;
+            set {
+                tattooResult.TotalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
+            }
+        }
+        public bool? IsLabelVisible {
+            get => tattooResult.IsLabelVisible;
+            set {
+                tattooResult.IsLabelVisible = value;
+                OnPropertyChanged(nameof(IsLabelVisible));
             }
         }
         #endregion
@@ -141,7 +155,11 @@ namespace Tattoo_Calculator.Models {
 
         private void Calculate() {
             if (Helper.ValidateFields(tattoo)) {
-                return;
+
+                var niddleRes = Convert.ToInt32(Niddle) * 20;
+                NiddleResultPrice = Convert.ToString(niddleRes);
+
+                TotalPrice = "100";
             }
         }
 
@@ -166,23 +184,25 @@ namespace Tattoo_Calculator.Models {
     }
 
     public class TattooResultModel {
-        public int? NiddleResultPrice { get; set; }
-        public int? HeightResultPrice { get; set; }
-        public int? WidthResultPrice { get; set; }
-        public int? ColorResultPrice { get; set; }
-        public int? TimeResultPrice { get; set; }
-        public int? DesignResultPrice { get; set; }
-        public int? DetailResultPrice { get; set; }
+        public string? NiddleResultPrice { get; set; }
+        public string? HeightResultPrice { get; set; }
+        public string? WidthResultPrice { get; set; }
+        public string? ColorResultPrice { get; set; }
+        public string? TimeResultPrice { get; set; }
+        public string? DesignResultPrice { get; set; }
+        public string? DetailResultPrice { get; set; }
+        public string? TotalPrice { get; set; }
+        public bool? IsLabelVisible { get; set; }
     }
 
     public class TattooModel {
-        public int? Niddle { get; set; }
-        public int? Height { get; set; }
-        public int? Width { get; set; }
-        public int? ColorPrice { get; set; }
-        public int? TimePrice { get; set; }
-        public int? DesignPrice { get; set; }
-        public int? DetailPrice { get; set; }
+        public string? Niddle { get; set; }
+        public string? Height { get; set; }
+        public string? Width { get; set; }
+        public string? ColorPrice { get; set; }
+        public string? TimePrice { get; set; }
+        public string? DesignPrice { get; set; }
+        public string? DetailPrice { get; set; }
 
     }
 
@@ -194,21 +214,45 @@ namespace Tattoo_Calculator.Models {
 
             foreach (PropertyInfo property in properties) {
                 var obj = property.GetValue(tattoo);
-                //if (obj != null && ValidateTypes(obj as string)) {
-                //    valid = false;
-                //    break;
-                //}
+
+                if (obj != null && !ValidateTypes(obj as string)) {
+                    Application.Current.MainPage.DisplayAlert("Error", string.Format("The {0} field should be numeric", property.Name), "OK");
+                    valid = false;
+                    break;
+                }
             }
+            if (valid) {
+                valid = ValidateNullableFields(tattoo);
+            }
+
             return valid;
         }
 
-        //private static bool ValidateTypes(string? prop) {
-        //    int parsedVal;
+        private static bool ValidateTypes(string? prop) {
+            
+            if (!int.TryParse(prop, out int parsedVal)) {
+                return false;
+            }
+            return true;
+        }
 
-        //    if (!int.TryParse(prop, out parsedVal)) {
+        private static bool ValidateNullableFields(TattooModel tattoo) {
+          
+            if (string.IsNullOrEmpty(tattoo.Niddle)) {
+                Application.Current.MainPage.DisplayAlert("Error", "The niddle field cannot be null", "OK");
+                return false;
+            }
+            if (string.IsNullOrEmpty(tattoo.Width)) {
+                Application.Current.MainPage.DisplayAlert("Error", "The width field cannot be null", "OK"); 
+                return false;
+            }
+            if (string.IsNullOrEmpty(tattoo.Height)) {
+                Application.Current.MainPage.DisplayAlert("Error", "The height field cannot be null", "OK");
+                return false;
+            }
 
-        //    }
-        //}
+            return true;
+        }
     }
 
 }
